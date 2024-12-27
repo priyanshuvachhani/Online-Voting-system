@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Capture and Save Photo</title>
+    <link rel="icon" type="image/x-icon"  href="../image/logo.png">
+</head>
+<body>
+    <h2>Capture and Save Photo from Webcam</h2>
+    <video id="webcam" autoplay></video>
+    <button onclick="captureImage()">Capture Photo</button>
+    <p id="status"></p>
+    
+    <script>
+        const video = document.getElementById('webcam');
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => video.srcObject = stream)
+            .catch(err => console.error("Webcam error:", err));
+
+        function captureImage() {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+
+            // Convert the canvas image to a base64-encoded image
+            const dataUrl = canvas.toDataURL('image/jpeg');
+
+            // Send the image to PHP for saving
+            fetch('save_photo.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image: dataUrl })
+            })
+            .then(response => response.json())
+            .then(data => document.getElementById("status").innerText = data.message)
+            .catch(err => console.error("Error:", err));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+@import "https://use.fontawesome.com/releases/v6.6.0/css/all.css";
+
+body {
+    margin: 0;
+}
+
+.atex {
+    border-radius: 10px;
+    border-color: blue;
+    height: 30px;
+    width: 250px;
+}
+
+.afile {
+    border: 2px solid blue;
+    border-radius: 10px;
+    height: 30px;
+    width: 100%;
+}
+
+.abtn {
+    background: none;
+    border: 2px solid blue;
+    border-radius: 18px;
+    color: blue;
+    padding: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 12px 0;
+
+}
+
+.abtn:hover:not(.active) {
+    background-color: gray;
+    color: white;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table td {
+    padding: 8px;
+}
+
+.table tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+.table tr:nth-child(odd) {
+    background-color: rgb(229, 229, 229)
+}
+
+.table th {
+    padding: 8px;
+    background-color: blue;
+    color: white;
+}
